@@ -1,10 +1,16 @@
 package guru.springframework.spring5webapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties("books")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +52,7 @@ public class Author {
         this.lastName = lastName;
     }
 
+    @JsonBackReference
     public Set<Book> getBooks() {
         return books;
     }

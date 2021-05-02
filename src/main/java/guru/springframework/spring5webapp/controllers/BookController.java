@@ -14,4 +14,9 @@ public interface BookController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     Book saveBook(@RequestBody Book book);
+
+    @GetMapping("/{bookId}")
+    Book getBookById(@PathVariable Long bookId);
+
+
 }

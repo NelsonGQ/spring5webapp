@@ -9,4 +9,6 @@ public interface BookService {
     List<Book> getAllBooks();
 
     Book saveBook(Book book);
+
+    Book getOneBookById(Long id);
 }

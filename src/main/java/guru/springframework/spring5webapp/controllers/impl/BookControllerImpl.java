@@ -24,4 +24,9 @@ public class BookControllerImpl implements BookController {
     public Book saveBook(Book book) {
         return bookService.saveBook(book);
     }
+
+    @Override
+    public Book getBookById(Long bookId) {
+        return bookService.getOneBookById(bookId);
+    }
 }

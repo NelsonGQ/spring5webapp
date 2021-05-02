@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+
     @Autowired
     private BookRepository bookRepository;
 
@@ -21,5 +22,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book saveBook(Book book) {
         return bookRepository.save(book);
+    }
+
+    @Override
+    public Book getOneBookById(Long id) {
+        return bookRepository.findById(id).get();
     }
 }
