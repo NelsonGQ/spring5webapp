@@ -28,28 +28,31 @@ public class BootstrapData implements CommandLineRunner {
         Author firstAuthor = new Author("Jake","Evans");
         Book firstBook = new Book("How to be a Dragon","56789");
         Publisher firstPublisher = new Publisher("Jill INC","Some Street","Some City","Some State","B2490");
-        firstAuthor.getBooks().add(firstBook);
-        firstBook.getAuthors().add(firstAuthor);
-        firstPublisher.getBooks().add(firstBook);
-
-        authorRepository.save(firstAuthor);
-        bookRepository.save(firstBook);
         publisherRepository.save(firstPublisher);
+        setRelationships(firstAuthor, firstBook, firstPublisher);
 
         Author secondAuthor = new Author("Rod","Johnson");
         Book secondBook = new Book("J2EE Development without EJB","87967");
         Publisher secondPublisher = new Publisher("Test Publisher","Some Street","Some City","Some State","N7692");
-        secondAuthor.getBooks().add(secondBook);
-        secondBook.getAuthors().add(secondAuthor);
-        secondPublisher.getBooks().add(secondBook);
-
-        authorRepository.save(secondAuthor);
-        bookRepository.save(secondBook);
         publisherRepository.save(secondPublisher);
+        setRelationships(secondAuthor, secondBook, firstPublisher);
 
         System.out.println("Started the following:");
         System.out.println("Number of books: "+bookRepository.count());
         System.out.println("Number of publishers: "+publisherRepository.count());
+        System.out.println("Publisher 1 number of books: "+firstPublisher.getBooks().size());
+        System.out.println("Publisher 2 number of books: "+secondPublisher.getBooks().size());
 
+    }
+
+    private void setRelationships(Author author, Book book, Publisher publisher) {
+        author.getBooks().add(book);
+        book.getAuthors().add(author);
+        publisher.getBooks().add(book);
+        book.setPublisher(publisher);
+
+        authorRepository.save(author);
+        bookRepository.save(book);
+        publisherRepository.save(publisher);
     }
 }

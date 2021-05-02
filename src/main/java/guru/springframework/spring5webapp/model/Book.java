@@ -16,6 +16,9 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
 
+    @ManyToOne
+    private Publisher publisher;
+
     public Book() {
     }
 
@@ -56,7 +59,13 @@ public class Book {
         this.authors = authors;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
 
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
 
     @Override
     public boolean equals(Object o) {
